@@ -1,0 +1,12 @@
+# virtual environment for python
+venv/
+
+.idea/
+
+# go binary directories
+go/bin
+go/pkg
+
+# go dependencies
+go/src/github.com/
+go/src/gopkg.in/

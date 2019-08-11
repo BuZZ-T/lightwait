@@ -2,7 +2,7 @@
 
 **A lightweight wait light!**
 
-***NOTE** This is the description of the <u>lightwait-stack</u>, the architecture of the lightwait eco-system. For the product "lightwait", see [lightwait-go](https://github.com/BuZZ-T/lightwait-go) , the reference implemenation of a lightwait-trigger, containing information how to connect to [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino), the reference implementation of a lightwait-presenter!* (or take a look at the [CLI-status notifier](#cli-status) section)
+***NOTE** This is the description of the lightwait-stack, the architecture of the lightwait eco-system. For the product "lightwait", see [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) , the reference implemenation of a [lightwait-trigger](#trigger), containing information how to connect to [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino), the reference implementation of a lightwait-presenter!* (or take a look at the [CLI-status notifier](#cli-status) section)
 
 ![The lightwait stack](https://raw.githubusercontent.com/BuZZ-T/lightwait/master/lightwait-stack.png  "The lightwait stack")
 
@@ -29,7 +29,7 @@ The lightwait-trigger contains the complete logic when to set certain colors or 
 <a name="trigger"></a>
 ## Trigger
 
-It calls the connected transmitter to deliver the change to the presenter.
+A trigger calls the connected transmitter to deliver the change to the presenter. It contains all the logic regarding what color corresponds to which status and which colors (and therefore) statuses are available.
 
 <a name="cli-status"></a>
 ### CLI-status notifier
@@ -54,7 +54,8 @@ Currently there are two triggers which implements this logic:
 <a name="transmitter"></a>
 ## Transmitter
 
-A lightwait-transmitter receives are color code (which may include a blink code) and sends this information to the presenter. As the presenter may be a <u>different hardware device</u>, the transmitter establishes and handles the communication stream to its presenter. A transmitter may support more than one presenter and therefore more than one communication stream.
+A lightwait-transmitter receives are color code (which may include a blink code) and sends this information to the presenter. As the presenter may be a <u>different hardware device</u>, the transmitter establishes and handles the communication stream to its presenter. A transmitter may support more than one presenter and therefore more than one communication stream.  
+The default port for TCP and UDP based connections is: 3030
 
 Use a transmitter of the programming language of your choice as base of your own trigger.
 
@@ -81,12 +82,8 @@ Available presenters:
 
 * [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino)
 * [lightwait-python-gtk](https://github.com/BuZZ-T/lightwait-python-gtk)
-
-
-Planned presenters:
-
-* lightwait-jambel
-* lightwait-indicator
+* [lightwait-gnome-extension](https://github.com/BuZZ-T/lightwait-gnome-extension)
+* [lightwait-python-jambel](https://github.com/BuZZ-T/lightwait-python-jambel)
 
 Also possible (not not actually planned):
 * lightwait-android
@@ -115,6 +112,7 @@ Planned:
 
 * lightwait-python-multiplexer: A tool to call multiple wired transmitter at once
 
+<a name="cli-parameter"></a>
 #### CLI parameter-based
 
 lightwait-transmitters which are CLI based, are scripts or binary programs, which accept the color/blinking code as parameter.
@@ -208,12 +206,13 @@ Currently, these are all known colors, which should be available for the lightwa
 
 | Name | type | programming language | description
 |-|-|-|-
-| [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | [Trigger](#trigger) | [golang](https://golang.org/)
+| [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) | [Trigger](#trigger) | [golang](https://golang.org/)
 | [lightwait-shell](https://github.com/BuZZ-T/lightwait-shell) | [Trigger](#trigger) | bash/batch
-| [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) | [Transmitter](#transmitter) | [golang](https://golang.org/)
+| [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | [Transmitter](#transmitter) | [golang](https://golang.org/)
 | [lightwait-python](https://github.com/BuZZ-T/lightwait-python) | [Transmitter](#transmitter) | [python](https://www.python.org/)
-| [lightwait-python-udp](https://github.com/BuZZ-T/lightwait-python-udp) | [Transmitter](#transmitter) | [python](https://www.python.org/)
+| [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp) | [Transmitter](#transmitter) | [python](https://www.python.org/)
 | [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer) | [(Meta-) Transmitter](#transmitter) | [python](https://www.python.org/)
+| [lightwait-python-jambel](https://github.com/BuZZ-T/lightwait-python-jambel) | [Transmitter](#presenter) | [python](https://www.python.org/) | Using [python-jambel](https://github.com/jambit/python-jambel) to connect to fast-feedback lights
 | [lightwait-python-gtk](https://github.com/BuZZ-T/lightwait-python-gtk) | [Presenter](#presenter) | [python](https://www.python.org/)
 | [lightwait-gnome-extension](https://github.com/BuZZ-T/lightwait-gnome-extension) | [Presenter](#presenter) | [JavaScript for gjs](https://wiki.gnome.org/Projects/GnomeShell/Extensions)
 | [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino) | [Presenter](#presenter) | [C](https://www.arduino.cc/)

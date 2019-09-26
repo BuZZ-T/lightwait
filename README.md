@@ -21,12 +21,11 @@ The lightwait-trigger contains the complete logic when to set certain colors or 
 * [Presenter](#presenter)
 * [Inter-layer communication protocols](#communication)
 * [Known colors](#known-colors)
-* [All related Repositories](#related)
+* [All related Repositories](#all-related-repositories)
 * [Acknowledgements](#acknowledgements)
 * [License of this documentation/specification](#license-of-this-documentationspecification)
 * [FAQ](#faq)
 
-<a name="trigger"></a>
 ## Trigger
 
 A trigger calls the connected transmitter to deliver the change to the presenter. It contains all the logic regarding what color corresponds to which status and which colors (and therefore) statuses are available.
@@ -51,7 +50,6 @@ Currently there are two triggers which implements this logic:
 | [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) | golang | This project may be compiled to a binary CLI for multiple operation systems and multiple architectures. It may call a lightwait-transmitter by a sub-process, or include lightwait-go as library to already contain the transmitter.
 | [lightwait-shell](https://github.com/BuZZ-T/lightwait-shell) | bash/batch | This project contains one bash file for linux/unix/cygwin machines and a batch file for windows machines. They are able to call a lightwait-transmitter as a sub-process. They lack some functionality compared to lightwait-go-shell.
 
-<a name="transmitter"></a>
 ## Transmitter
 
 A lightwait-transmitter receives are color code (which may include a blink code) and sends this information to the presenter. As the presenter may be a <u>different hardware device</u>, the transmitter establishes and handles the communication stream to its presenter. A transmitter may support more than one presenter and therefore more than one communication stream.  
@@ -184,7 +182,6 @@ Some examples:
 
 This is a non-standardized idea and currently not part of the lightwait-stack.
 
-<a name="known-colors"></a>
 ## Known colors
 
 Currently, these are all known colors, which should be available for the lightwait-tt communication.
@@ -201,7 +198,6 @@ Currently, these are all known colors, which should be available for the lightwa
 | black | #000000 | 0:0:0
 | off | #000000 | 0:0:0 | might also close the connection of the transmitter, check the description
 
-<a name="related"></a>
 ## All related repositories
 
 | Name | type | programming language | description
@@ -217,7 +213,6 @@ Currently, these are all known colors, which should be available for the lightwa
 | [lightwait-gnome-extension](https://github.com/BuZZ-T/lightwait-gnome-extension) | [Presenter](#presenter) | [JavaScript for gjs](https://wiki.gnome.org/Projects/GnomeShell/Extensions)
 | [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino) | [Presenter](#presenter) | [C](https://www.arduino.cc/)
 
-<a name="acknowledgements"></a>
 ## Acknowledgements
 
 * Thanks to the [serial-port-json-server](https://github.com/johnlauer/serial-port-json-server) project, for the code for determine the arduino port for the go version!

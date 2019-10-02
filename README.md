@@ -2,7 +2,7 @@
 
 **A lightweight wait light!**
 
-***NOTE** This is the description of the lightwait-stack, the architecture of the lightwait eco-system. For the product "lightwait", see [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) , the reference implemenation of a [lightwait-trigger](#trigger), containing information how to connect to [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino), the reference implementation of a lightwait-presenter!* (or take a look at the [CLI-status notifier](#cli-status) section)
+***NOTE** This is the description of the lightwait-stack, the architecture of the lightwait eco-system. For the product "lightwait", see [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) , the reference implemenation of a [lightwait-trigger](#trigger), containing information how to connect to [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino), the reference implementation of a lightwait-presenter!* (or take a look at the [CLI-status notifier](#cli-status-notifier) section)
 
 ![The lightwait stack](https://raw.githubusercontent.com/BuZZ-T/lightwait/master/lightwait-stack.png  "The lightwait stack")
 
@@ -61,8 +61,10 @@ Available transmitters and the presenters they can connect to:
 
 | Transmitter | programming language | description
 |-|-|-|
-| [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | golang | 
-| [lightwait-python](https://github.com/BuZZ-T/lightwait-python) | python | 
+| [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | golang | Is able to connect to an arduino via serial communication
+| [lightwait-python](https://github.com/BuZZ-T/lightwait-python) | python | Is able to connect to an arduino via serial communication
+| [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp) | python | Is able to communicate to presenters via TCP or UDP
+| [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer) | python | Is not a real transmitter, but an entity placed before, to split every received signal to multiple transmitters at the same time
 
 ## Presenter
 
@@ -106,10 +108,6 @@ Currently available transmitters which can be used as a library are:
 
 * [lightwait-go](https://github.com/BuZZ-T/lightwait-go)
 
-Planned:
-
-* lightwait-python-multiplexer: A tool to call multiple wired transmitter at once
-
 <a name="cli-parameter"></a>
 #### CLI parameter-based
 
@@ -129,7 +127,8 @@ Currently available CLI parameter-based transmitters:
 
 * [lightwait-python](https://github.com/BuZZ-T/lightwait-python)
 * [lightwait-go](https://github.com/BuZZ-T/lightwait-go)
-* [lightwait-python-udp](https://github.com/BuZZ-T/lightwait-python-udp)
+* [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp)
+* [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer)
 
 <a name="lightwait-tp"></a>
 ### Transmitter -> Presenter

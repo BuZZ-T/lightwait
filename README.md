@@ -6,10 +6,34 @@
 
 ![The lightwait stack](https://raw.githubusercontent.com/BuZZ-T/lightwait/master/lightwait-stack.png  "The lightwait stack")
 
+
+## Table of contents
+* [Principles](#principles)
+* [Trigger](#trigger)
+* [Transmitter](#transmitter)
+* [Presenter](#presenter)
+* [Inter-layer communication protocols](#inter-layer-communication-protocols)
+* [Known colors](#known-colors)
+* [All related Repositories](#all-related-repositories)
+* [Acknowledgements](#acknowledgements)
+* [License of this documentation/specification](#license-of-this-documentationspecification)
+
+## Principles
+
+The different lightwait [programs](#all-related-repositories) follow these common principles:
+
+* [Splitted in a three layer stack](#splitted-in-a-three-layer-stack)
+* [CLI based (or integrated as library)](#cli-based-or-integrated-as-library)
+* [Pure push based](#pure-push-based)
+* [Pure color based](#pure-color-based)
+* [Code duplication over dependencies](#code-duplication-over-dependencies)
+* [Language-agnostic](#language-agnostic)
+
+
 #### Splitted in a three layer stack
 
 *lightwait* consists of a three layered stack. Each stack can be implemented by a different program which then connects to its previous or next layer via protocols.  
-One program also may implement more than one layer, removing the need to a protocol based communication. This also makes the program and its usage less flexibel.
+One program implements one or more than one layer, removing the need to a protocol based communication. This also makes the program and its usage less flexible.
 
 The three layers are:
 
@@ -39,18 +63,27 @@ This has the following consequences:
 
 #### Pure color based
 
-TODO
+The only information which is transmitted from the [trigger](#trigger) to the [presenter](#presenter) (via a [transmitter](#transmitter)) is a color. Therefore is the trigger the only entity which decides which color should be displayed in which situation. Hence, the trigger is the only place to contain business logic.
 
-## Table of contents
-* [Trigger](#trigger)
-* [Transmitter](#transmitter)
-* [Presenter](#presenter)
-* [Inter-layer communication protocols](#inter-layer-communication-protocols)
-* [Known colors](#known-colors)
-* [All related Repositories](#all-related-repositories)
-* [Acknowledgements](#acknowledgements)
-* [License of this documentation/specification](#license-of-this-documentationspecification)
-* [FAQ](#faq)
+* Every presenter is able to work with every trigger (as long as a transmitter which works with the presenter exists)
+* Transmitter and presenter are easy to write, as they don't contain business logic. That means they are small and easy to read, and therefore less error-prone.
+* Every Presenter should support the full range of 24-Bit RGB colors. (Like in the web, `#000000` (black) to `#FFFFFF` (white) and everything in between. This doesn't necessarily mean the presenter has to be able to display every of these colors. It's also applicable to round a color code to the next displayable color. But the presenter has to be **robust** to accept every color in this range!
+
+#### Code duplication over dependencies
+
+Every project implementing a trigger/transmitter/presenter in the lightwait-stack should be independent of other projects. This has the consequence that some lines of code are duplicated several times (e.g. the parsing and translating of colors in transmitters). But to enable users to select every layer of the lightwait-stack independently of other layers and to even allow cross-language selections, small simple and isolated projects are important.
+
+This means to not even create utils projects to reuse common functionalities!
+
+#### Language-agnostic
+
+By complying to these principles:
+
+* [Splitted in a three layer stack](#splitted-in-a-three-layer-stack)
+* [CLI based (or integrated as library)](#cli-based-or-integrated-as-library)
+* [Code duplication over dependencies](#code-duplication-over-dependencies)
+
+lightwait offers developers to add their missing layer of the stack in the programming language and the technology stack of their desire. Different layers of the stack can be written in different languages and can be changed independently.
 
 ## Trigger
 
@@ -113,6 +146,7 @@ Available presenters:
 | [lightwait-python-gtk](https://github.com/BuZZ-T/lightwait-python-gtk) | [python](https://www.python.org/) | A GTK3 application displaying the received color in a gtk window
 | (jambel) | --- | A hardware device without code written in this project. Can be used to display triafficlight-like colors and can be controled using [python-jambel](https://github.com/jambit/python-jambel)
 [lightwait-js-web-extension](https://github.com/BuZZ-T/lightwait-js-web-extension) | JavaScript | A Web-extension supporting Firefox and Chrome displaying the received color in the toolbar
+[lightwait-python-pi](https://github.com/BuZZ-T/lightwait-python-pi) | [python](https://www.python.org/) | A presenter using GPIO pins on the Raspberry Pi. Compatible with every Raspberry Pi version!
 
 Also possible (not not actually planned):
 * lightwait-android
@@ -210,7 +244,7 @@ This is a non-standardized idea and currently not part of the lightwait-stack.
 
 ## Known colors
 
-Currently, these are all known colors, which should be available for the [lightwait-tt](#transmitter---presenter) communication.
+Currently, these are all known colors, which should be available for the [lightwait-tt](#trigger--transmitter) communication.
 
 | Name | Hex-code | lightwait-tp | comment
 |-|-|-|-
@@ -239,6 +273,7 @@ Currently, these are all known colors, which should be available for the [lightw
 | [lightwait-gnome-extension](https://github.com/BuZZ-T/lightwait-gnome-extension) | [Presenter](#presenter) | [JavaScript for gjs](https://wiki.gnome.org/Projects/GnomeShell/Extensions)
 | [lightwait-python-gtk](https://github.com/BuZZ-T/lightwait-python-gtk) | [Presenter](#presenter) | [python](https://www.python.org/)
 [lightwait-js-web-extension](https://github.com/BuZZ-T/lightwait-js-web-extension) | [Presenter](#presenter) | JavaScript | Currently only supporting Firefox and Chrome
+[lightwait-python-pi](https://github.com/BuZZ-T/lightwait-python-pi) | [Presenter](#presenter) | [python](https://www.python.org/) |
 
 
 ## Acknowledgements

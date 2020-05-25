@@ -16,6 +16,7 @@
 * [Known colors](#known-colors)
 * [All related Repositories](#all-related-repositories)
 * [Acknowledgements](#acknowledgements)
+* [How to extend](#how-to-extend)
 * [License of this documentation/specification](#license-of-this-documentationspecification)
 
 ## Principles
@@ -41,9 +42,11 @@ The three layers are:
 * [Transmitter](#transmitter)
 * [Presenter](#presenter)
 
-#### CLI based (or integrated as library)
+#### CLI based transmitter (or integrated as library)
 
 A unit which provides a layer in the lightwait-stack might be:
+
+TODO: rework
 
 * an executable
 * a library for the next layer
@@ -52,7 +55,7 @@ The lightwait-trigger contains the complete logic when to set certain colors or 
 
 #### Pure push based
 
-To establish a protocoal which is as simple as possible, the trigger is the only unit initiating updates, there is no way to pull the latest status.
+To establish a protocol which is as simple as possible, the trigger is the only unit initiating updates, there is no way to pull the latest status. Also presenters don't offer a listener/callback/observable to register to.
 
 This has the following consequences:
 
@@ -122,8 +125,13 @@ Available transmitters and the presenters they can connect to:
 | [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | [go](https://golang.org/) | Is able to connect to an arduino via serial communication
 | [lightwait-python](https://github.com/BuZZ-T/lightwait-python) | [python](https://www.python.org/) | Is able to connect to an arduino via serial communication
 | [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp) | [python](https://www.python.org/) | Is able to communicate to presenters via TCP or UDP
+| [lightwait-node-tcp-udp](https://github.com/BuZZ-T/lightwait-node-tcp-udp) | JavaScript | Is able to communicate to presenters via TCP or UDP
 | [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer) | [python](https://www.python.org/) | Is not a real transmitter, but an entity placed before, to split every received signal to multiple transmitters at the same time
 | [lightwait-python-jambel](https://github.com/BuZZ-T/lightwait-python-jambel) | [python](https://www.python.org/) | Is able to communicate with a jambel device, using [python-jambel](https://github.com/jambit/python-jambel)
+
+### Testing transmitters
+
+See: [lightwait-transmitter-test](https://github.com/BuZZ-T/lightwait/lightwait-transmitter-test)
 
 ## Presenter
 
@@ -189,6 +197,7 @@ Currently available CLI parameter-based transmitters:
 * [lightwait-python](https://github.com/BuZZ-T/lightwait-python)
 * [lightwait-python-jambel](https://github.com/BuZZ-T/lightwait-python-jambel)
 * [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp)
+* [lightwait-node-tcp-udp](https://github.com/BuZZ-T/lightwait-node-tcp-udp)
 * [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer)
 
 <a name="lightwait-tp"></a>
@@ -244,7 +253,7 @@ This is a non-standardized idea and currently not part of the lightwait-stack.
 
 ## Known colors
 
-Currently, these are all known colors, which should be available for the [lightwait-tt](#trigger--transmitter) communication.
+Currently, these are all known colors, which should be available for the [lightwait-tt](#transmitter---presenter) communication.
 
 | Name | Hex-code | lightwait-tp | comment
 |-|-|-|-
@@ -267,6 +276,7 @@ Currently, these are all known colors, which should be available for the [lightw
 | [lightwait-go](https://github.com/BuZZ-T/lightwait-go) | [Transmitter](#transmitter) | [go](https://golang.org/)
 | [lightwait-python](https://github.com/BuZZ-T/lightwait-python) | [Transmitter](#transmitter) | [python](https://www.python.org/)
 | [lightwait-python-tcp-udp](https://github.com/BuZZ-T/lightwait-python-tcp-udp) | [Transmitter](#transmitter) | [python](https://www.python.org/)
+| [lightwait-node-tcp-udp](https://github.com/BuZZ-T/lightwait-node-tcp-udp) | [Transmitter](#transmitter) | JavaScript
 | [lightwait-python-multiplexer](https://github.com/BuZZ-T/lightwait-python-multiplexer) | [(Meta-) Transmitter](#transmitter) | [python](https://www.python.org/)
 | [lightwait-python-jambel](https://github.com/BuZZ-T/lightwait-python-jambel) | [Transmitter](#presenter) | [python](https://www.python.org/) | Using [python-jambel](https://github.com/jambit/python-jambel) to connect to fast-feedback lights
 | [lightwait-arduino](https://github.com/BuZZ-T/lightwait-arduino) | [Presenter](#presenter) | [C](https://www.arduino.cc/)
@@ -274,7 +284,8 @@ Currently, these are all known colors, which should be available for the [lightw
 | [lightwait-python-gtk](https://github.com/BuZZ-T/lightwait-python-gtk) | [Presenter](#presenter) | [python](https://www.python.org/)
 [lightwait-js-web-extension](https://github.com/BuZZ-T/lightwait-js-web-extension) | [Presenter](#presenter) | JavaScript | Currently only supporting Firefox and Chrome
 [lightwait-python-pi](https://github.com/BuZZ-T/lightwait-python-pi) | [Presenter](#presenter) | [python](https://www.python.org/) |
-
+[lightwait-go-set](https://github.com/BuZZ-T/lightwait/lightwait-go-set) | Configuration setter for [lightwait-go-shell](https://github.com/BuZZ-T/lightwait-go-shell) | [go](https://golang.org/) | 
+[lightwait-transmitter-test](https://github.com/BuZZ-T/lightwait/lightwait-transmitter-test) | Testsuite for transmitters| [python](https://www.python.org/) | Testsuites for TCP and UDP transmitters already exist. Easy extendable for other transmitters
 
 ## Acknowledgements
 
@@ -282,6 +293,36 @@ Currently, these are all known colors, which should be available for the [lightw
 * Thanks to the [system-monitor](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet) project, helping me to understand how to write gnome-extensions, by looking at the source!
 * Thanks to Max for a printable arduino case design and the catchy slogan! :)
 * Thanks to moepi for suggesting to implement it in go and made me to want to learn it! :)
+
+## How to extend
+
+* [Implement a trigger](#implement-a-trigger)
+* [Implement a transmitter](#implement-a-transmitter)
+* [Implement a presenter](#implement-a-presenter)
+
+### Implement a trigger
+
+If you want to write your own trigger, there are basically three different possibilities
+
+* Write a script and use it with [lw](https://github.com/BuZZ-T/lightwait/lightwait-go-shell)
+    * The script should use the exit code to publish succes/failure, if it's a completing task
+    * The script should use color texts and print them 
+* Write a script, which prints the color via `stdout` and use it with [lw --live-color](https://github.com/BuZZ-T/lightwait/lightwait-go-shell#live-color-mode)
+* Write your very own trigger, which calls a [transmitter](#transmitter)
+
+### Implement a transmitter
+
+If you think you need to write a transmitter, please first think if this is really necessary. Take a look at already existing transmitters (See the table [here](#transmitter)).
+
+#### Implement a transmitter-testsuite
+
+If you do wrote your own transmitter, be sure to use the [lightwait-transmitter-test](https//github.com/BuZZ-T/lightwait-transmitter-test).
+
+TODO
+
+### Implement a presenter
+
+TODO
 
 ## License of this documentation/specification
 

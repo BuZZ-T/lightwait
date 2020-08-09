@@ -139,16 +139,6 @@ Schema: `b<red>:<green>:<blue>|<red>:<green>:<blue>|...`
 * Thanks to Max for printable case design!
 * Thanks to moepi for suggesting to implement it in go and made me to want to learn it! :)
 
-## FAQ
-* What's the License of that all?
-* Do you accept pull requests?
-     * Sure! Your contribution is appreciated!
-* Why do you use bash/batch scripts for calling the program and don't call them directly from lw?
-    * This is a first step. Sure, it would be smarter to call them directly from the go/python/whatever program. I'll change that. Go ahead and change it by yourself, if you need it fast.
-* Why are there so many programming languages in the feature matrix (most of them not implemented!)?
-* Why do you only support Arduino? I have an ESP8266/Espruino/Oak/...!
-    * Exactly. Would be great! The arduino is a first step. Feel free to contribute!
-* Why do you only support tasks that terminate? I'm calling `mvn jetty:run` and want to be notified when it's ready!
-    * Great idea! I thought of this, too! :P As it might be a bit more work to do, it's postponed. Feel free to contribute!
-* An Arduino Uno is really big. Wouldn't be an Arduino Micro enough?
-    * True. For a proof of concept, we implemented it for an uno as we already had one laying around. Once we have the time create a circuit board and a case for a smaller device, we'll do it!
+## License of this documentation/specification
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

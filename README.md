@@ -14,9 +14,9 @@
 * [Presenter](#presenter)
 * [Inter-layer communication protocols](#inter-layer-communication-protocols)
 * [Known colors](#known-colors)
+* [How to](#how-to)
 * [All related Repositories](#all-related-repositories)
 * [Acknowledgements](#acknowledgements)
-* [How to extend](#how-to-extend)
 * [License of this documentation/specification](#license-of-this-documentationspecification)
 
 ## Principles
@@ -24,12 +24,12 @@
 The different lightwait [programs](#all-related-repositories) follow these common principles:
 
 * [Splitted in a three layer stack](#splitted-in-a-three-layer-stack)
-* [CLI based (or integrated as library)](#cli-based-or-integrated-as-library)
+* [CLI based transmitters)](#cli-based-transmitters)
 * [Pure push based](#pure-push-based)
 * [Pure color based](#pure-color-based)
 * [Code duplication over dependencies](#code-duplication-over-dependencies)
 * [Language-agnostic](#language-agnostic)
-
+* [Free](#free)
 
 #### Splitted in a three layer stack
 
@@ -42,16 +42,11 @@ The three layers are:
 * [Transmitter](#transmitter)
 * [Presenter](#presenter)
 
-#### CLI based transmitter (or integrated as library)
+#### CLI based transmitters
 
-A unit which provides a layer in the lightwait-stack might be:
+Transmitters should be as simple as possible, so that every trigger written in any programming language or script is able to call a transmtiter. 
 
-TODO: rework
-
-* an executable
-* a library for the next layer
-* part of a multilayer program
-The lightwait-trigger contains the complete logic when to set certain colors or blinkings. Therefore, it also contains the meaning of each color and/or blinking.
+To achieve this, transmitters are cli-based. So every script or program which is able to spawn a child process and execute a command, is able to start a transmitter.
 
 #### Pure push based
 
@@ -87,6 +82,15 @@ By complying to these principles:
 * [Code duplication over dependencies](#code-duplication-over-dependencies)
 
 lightwait offers developers to add their missing layer of the stack in the programming language and the technology stack of their desire. Different layers of the stack can be written in different languages and can be changed independently.
+
+#### Free
+
+... as in free speech!
+
+Every [related repository](#all-related-repositories) contains code written under a free license. The default should be the GPLv3 (but it's not guaranteed, that all repositories really are released under this license, check the specific repository for details!). And all contributors are encouraged to also release their code under a free license like the GPLv3.  
+This enables every user to investigate what the code is doing and can adapt or copy it easily.
+
+In addition, this document is also released under a free license, encouraging developers to contribute, use and distribute lightwait.
 
 ## Trigger
 
@@ -267,6 +271,72 @@ Currently, these are all known colors, which should be available for the [lightw
 | black | #000000 | 0:0:0
 | off | #000000 | 0:0:0 | might also close the connection of the transmitter, check the description
 
+* Three digit hex codes
+* Six digit hex codes
+
+## How to
+
+* [How to extend](#how-to-extend)
+* [How to contribute](#how-to-contribute)
+* [How to include lightwait in your proprietary project](#how-to-include-lightwait-in-your-proprietary-project)
+
+## How to extend
+
+* [Implement a trigger](#implement-a-trigger)
+* [Implement a transmitter](#implement-a-transmitter)
+* [Implement a presenter](#implement-a-presenter)
+
+### Implement a trigger
+
+If you want to write your own trigger, there are basically three different possibilities:
+
+First it's important how your trigger should behave. Does it have a "one-time result", or is it an ongoing stream of status information.
+
+* one-time result
+* ongoing stream
+
+TODO
+
+* Write a script and use it with [lw](https://github.com/BuZZ-T/lightwait/lightwait-go-shell)
+    * The script should use the exit code to publish succes/failure, if it's a completing task using `lw`
+    * The script should use color texts and print them using `lw --live`
+* Write a script, which prints the color via `stdout` and use it with [lw --live-color](https://github.com/BuZZ-T/lightwait/lightwait-go-shell#live-color-mode)
+* Write your very own trigger, which calls a [transmitter](#transmitter)
+
+### Implement a transmitter
+
+This shouldn't be necessary for most of the usecases, as transmitters could be reused by every trigger. So please first check the [Transmitter](#transmitter)s and the [related repositories]((#all-related-repositories))
+If you have a communication channel for which no transmitter exists and you have to write one, please contribute this improvement to lightwait!
+
+TODO
+
+#### Implement a transmitter-testsuite
+
+If you do wrote your own transmitter, be sure to use the [lightwait-transmitter-test](https//github.com/BuZZ-T/lightwait-transmitter-test).
+
+### Implement a presenter
+
+TODO
+
+### How to contribute...
+
+#### ...by creating pull requests
+
+TODO
+
+#### ...by writing a new trigger/transmitter/presenter
+
+TODO
+
+#### ...by linking your repository
+
+TODO
+
+### How to include lightwait in your proprietary project
+
+Just do it! :)
+TODO
+
 ## All related repositories
 
 | Name | type | programming language | description
@@ -293,36 +363,6 @@ Currently, these are all known colors, which should be available for the [lightw
 * Thanks to the [system-monitor](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet) project, helping me to understand how to write gnome-extensions, by looking at the source!
 * Thanks to Max for a printable arduino case design and the catchy slogan! :)
 * Thanks to moepi for suggesting to implement it in go and made me to want to learn it! :)
-
-## How to extend
-
-* [Implement a trigger](#implement-a-trigger)
-* [Implement a transmitter](#implement-a-transmitter)
-* [Implement a presenter](#implement-a-presenter)
-
-### Implement a trigger
-
-If you want to write your own trigger, there are basically three different possibilities
-
-* Write a script and use it with [lw](https://github.com/BuZZ-T/lightwait/lightwait-go-shell)
-    * The script should use the exit code to publish succes/failure, if it's a completing task
-    * The script should use color texts and print them 
-* Write a script, which prints the color via `stdout` and use it with [lw --live-color](https://github.com/BuZZ-T/lightwait/lightwait-go-shell#live-color-mode)
-* Write your very own trigger, which calls a [transmitter](#transmitter)
-
-### Implement a transmitter
-
-If you think you need to write a transmitter, please first think if this is really necessary. Take a look at already existing transmitters (See the table [here](#transmitter)).
-
-#### Implement a transmitter-testsuite
-
-If you do wrote your own transmitter, be sure to use the [lightwait-transmitter-test](https//github.com/BuZZ-T/lightwait-transmitter-test).
-
-TODO
-
-### Implement a presenter
-
-TODO
 
 ## License of this documentation/specification
 

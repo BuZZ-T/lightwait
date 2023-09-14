@@ -292,11 +292,6 @@ If you want to write your own trigger, there are basically three different possi
 
 First it's important how your trigger should behave. Does it have a "one-time result", or is it an ongoing stream of status information.
 
-* one-time result
-* ongoing stream
-
-TODO
-
 * Write a script and use it with [lw](https://github.com/BuZZ-T/lightwait/lightwait-go-shell)
     * The script should use the exit code to publish succes/failure, if it's a completing task using `lw`
     * The script should use color texts and print them using `lw --live`
@@ -316,25 +311,6 @@ If you do wrote your own transmitter, be sure to use the [lightwait-transmitter-
 
 ### Implement a presenter
 
-TODO
-
-### How to contribute...
-
-#### ...by creating pull requests
-
-TODO
-
-#### ...by writing a new trigger/transmitter/presenter
-
-TODO
-
-#### ...by linking your repository
-
-TODO
-
-### How to include lightwait in your proprietary project
-
-Just do it! :)
 TODO
 
 ## All related repositories
